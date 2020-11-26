@@ -1,9 +1,11 @@
+[all]
+
 [all:vars]
 
 # Your Nextcloud Server Domain Name
 
 # Default is the fqdn of the Machine
-nextcloud_fqdn          = nextcloud.example.tld
+nextcloud_fqdn          = cloud.luclis.xyz
 
 # Selfsigned Certificate are Default
 nextcloud_certificate_type  = 'selfsigned'
@@ -34,11 +36,11 @@ nextcloud_passwd            = ''
 
 # Nextcloud Database Settings
 # Leave Password Empty to generate secure, random one
-#nextcloud_db_type           = 'mysql'        # (MariaDB)
-nextcloud_db_type           = 'pgsql'        # (PostgreSQL)
+nextcloud_db_type           = 'mysql'        # (MariaDB)
+# nextcloud_db_type           = 'pgsql'        # (PostgreSQL)
 nextcloud_db_host           = 'localhost'
-nextcloud_db                = 'nextcloud'
-nextcloud_db_user           = 'nextcloud'
+nextcloud_db                = 'NextCloudDB'
+nextcloud_db_user           = 'nc_admin'
 nextcloud_db_passwd         = ''
 
 # Nextcloud Mail Setup
@@ -65,11 +67,11 @@ nextcloud_webserver_type    = nginx
 php_version                 = '7.4'
 
 # optional php packages see: roles/php/var/main.yml
-php_install_optional_packages = false
+php_install_optional_packages = true
 
 # Use S3 Bucket as primary storage
-objectstore_s3_key            = ''
-objectstore_s3_secret         = ''
+# objectstore_s3_key            = ''
+# objectstore_s3_secret         = ''
 # objectstore_s3_bucket_name    = ''
 # objectstore_s3_hostname       = 's3.amazonaws.com'
 # objectstore_s3_port           = '443'
@@ -84,7 +86,7 @@ install_talk                    = false
 # more info about restic: https://restic.readthedocs.io/en/latest/
 # to use a local directory as a restic repository (not a good idea anyway)
 # example: restic_repo          = '/var/backups/nextcloud'
-restic_repo          = ''    
+restic_repo          = ''
 
 # use rclone to backup a cloud storage, see https://rclone.org for more details
 # configure also rclone_remote in group_vars/all.yml
@@ -112,25 +114,20 @@ install_fulltextsearch = false
 #
 
 [nextcloud]
-localhost ansible_connection=local
+srvprj01ddc.luclis.xyz
 
 [redis]
-localhost ansible_connection=local
 
 [database]
-localhost ansible_connection=local
+srvprj01ddc.luclis.xyz
 
 [webserver]
-localhost ansible_connection=local
+srvprj01ddc.luclis.xyz
 
 [elasticsearch]
-localhost ansible_connection=local
 
 [collabora]
-localhost ansible_connection=local
 
 [onlyoffice]
-localhost ansible_connection=local
 
 [coturn]
-localhost ansible_connection=local
