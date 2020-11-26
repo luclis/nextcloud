@@ -1,5 +1,5 @@
 ---
-# apt related OS tasks
+# dnf related OS tasks
 
 - name: install additional packages
   dnf:

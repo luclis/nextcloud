@@ -1,10 +1,10 @@
 ---
 
-# dnf related tasks
+# dnf related OS tasks
 
 - name: install fail2ban
-  dnf: 
-    name: 
+  dnf:
+    name:
       - fail2ban
       - fail2ban-firewalld
       - fail2ban-server

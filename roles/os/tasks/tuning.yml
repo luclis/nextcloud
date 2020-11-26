@@ -2,7 +2,7 @@
 # performance and sercurity tuning
 
 - name: sysctl vm.overcommit_memory=1
-  sysctl: 
+  sysctl:
     name: vm.overcommit_memory
     value: "1"
     state: present
@@ -17,7 +17,7 @@
     reload: true
     sysctl_file: /etc/sysctl.conf
 
-- name: check /sys/kernel/mm/transparent_hugepage/enabled 
+- name: check /sys/kernel/mm/transparent_hugepage/enabled
   stat:
     path: /sys/kernel/mm/transparent_hugepage/enabled
   register: hugepage_enabled
@@ -27,7 +27,7 @@
   - name: disable transparent hugepages - copy service file
     copy:
       src: disable-transparent-huge-pages.service
-      dest: '{{ service_path[ansible_distribution] }}/disable-transparent-huge-pages.service'
+      dest: '{{ systemd_service_path[ansible_os_family] }}/disable-transparent-huge-pages.service'
       owner: root
       group: root
       mode: 0644
