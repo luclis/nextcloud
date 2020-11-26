@@ -70,8 +70,8 @@ php_version                 = '7.4'
 php_install_optional_packages = true
 
 # Use S3 Bucket as primary storage
-# objectstore_s3_key            = ''
-# objectstore_s3_secret         = ''
+ objectstore_s3_key            = ''
+ objectstore_s3_secret         = ''
 # objectstore_s3_bucket_name    = ''
 # objectstore_s3_hostname       = 's3.amazonaws.com'
 # objectstore_s3_port           = '443'
@@ -117,6 +117,7 @@ install_fulltextsearch = false
 srvprj01ddc.luclis.xyz
 
 [redis]
+srvprj01ddc.luclis.xyz
 
 [database]
 srvprj01ddc.luclis.xyz
