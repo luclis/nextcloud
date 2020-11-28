@@ -11,6 +11,6 @@ redis_conf_path:
   RedHat: '/etc'
   Debian: '/etc/redis'
 
- redis_service:
-   RedHat: redis
-   Debian: redis-server
+redis_service:
+  RedHat: redis
+  Debian: redis-server

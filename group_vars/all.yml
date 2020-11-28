@@ -55,7 +55,7 @@ nextcloud_dh_lenght: "4096"
 nextcloud_certificate_key_length: ec-256
 nextcloud_ssl_certificate_directory: "/etc/ssl/public"
 nextcloud_ssl_key_directory: "/etc/ssl/private"
-nextcloud_dh_file: {{ ssl_directory }}/{{ ssl_certificate_directory }}/dh{{ nextcloud_dh_lenght }}.pem
+nextcloud_dh_file: ""{{ ssl_directory }}/{{ ssl_certificate_directory }}/dh{{ nextcloud_dh_lenght }}.pem"
 nextcloud_certificate_common_name: "{{ nextcloud_fqdn }}"
 nextcloud_certificate_file: "{{ ssl_certificate_directory }}/{{ nextcloud_certificate_common_name }}.pem"
 nextcloud_certificate_key: "{{ ssl_key_directory }}/{{ nextcloud_certificate_common_name }}.key"

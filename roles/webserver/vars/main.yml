@@ -12,8 +12,8 @@ tls_certificate_csr: "{{ nextcloud_certificate_csr }}"
 tls_certificate_ca: "{{ nextcloud_certificate_ca }}"
 tls_certificate_test: "{{ nextcloud_certificate_test }}"
 
-tls_dh_lenght: {{ nextcloud_dh_lenght }}
-tls_dh_file: {{ nextcloud_dh_file }}
+tls_dh_lenght: "{{ nextcloud_dh_lenght }}"
+tls_dh_file: "{{ nextcloud_dh_file }}"
 
 nginx_apt_repo_url:
   Ubuntu: deb http://nginx.org/packages/{{ ansible_distribution|lower }}/ {{ ansible_distribution_release }} nginx
