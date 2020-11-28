@@ -1,6 +1,4 @@
 ---
-# apt related OS tasks
-
 - name: add apt key for nginx repo
   apt_key:
     url: "{{ nginx_apt_key[ansible_distribution].url | default(omit) }}"
@@ -26,6 +24,7 @@
       - nginx-full
       - nginx-extras
     state: absent
+# apt related OS tasks
 
 - name: apt dist-upgrade
   apt:

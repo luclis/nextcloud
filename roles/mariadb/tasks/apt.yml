@@ -1,7 +1,7 @@
 ---
 # apt related OS tasks
 
-- name: add apt key for nginx repo
+- name: add apt key for maria repo
   apt_key:
     keyserver: hkps://keyserver.ubuntu.com
     id: '0xF1656F24C74CD1D8'
@@ -16,7 +16,7 @@
 
 - name: install mariadb-server packages
   apt:
-    name: 
+    name:
       - mariadb-server
       - mariadb-client
       - python3-pymysql

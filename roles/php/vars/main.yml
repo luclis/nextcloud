@@ -128,4 +128,3 @@ php_package_optional:
     - php-smbclient
     - php{{ php_version }}-ldap
     - php{{ php_version }}-imap
-

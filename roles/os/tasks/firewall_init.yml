@@ -1,4 +1,5 @@
 ---
+
 # init firewall
 
 - name: initialize ufw
@@ -34,7 +35,7 @@
       enabled: true
     when: ufw_state == 'enabled'
   when: ansible_os_family == 'Debian'
-  
+
 - name: initialize firewalld
   block:
   - name: install needed packages
@@ -45,4 +46,3 @@
     vars:
       ansible_python_interpreter: python2
   when: ansible_os_family == 'RedHat'
-

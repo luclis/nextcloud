@@ -16,7 +16,7 @@
     mode:  '0640'
     backup: true
     force:  false
-  when: 
+  when:
     - ( objectstore_s3_key != '' )
     - ( objectstore_s3_secret != '' )
     - ( not config_php.stat.exists )
@@ -93,4 +93,3 @@
     chdir: "{{ nextcloud_www_dir }}"
   loop: "{{ nextcloud_app_config }}"
   when: ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) )
-  

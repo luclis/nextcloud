@@ -1,10 +1,11 @@
 ---
+
 # defaults path of your generated credentials (e.g. database, talk, onlyoffice)
 # the directory must be writeable for the user running this playbook
 credential_store: ~/.nextcloud
 
 # example of rclone config to backup to a s3 bucket
-
+# You MUST adapt this if you want it on your NAS.
 #rclone_remote: |
 #      [backup-selfhosted]
 #      type = s3
@@ -27,7 +28,7 @@ redis_tcp:
   port:    "6379"
 
 # Some common variables used in more then roles
- 
+
 web_user:
   apache:
     RedHat: "apache"

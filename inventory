@@ -37,7 +37,7 @@ nextcloud_passwd            = ''
 # Nextcloud Database Settings
 # Leave Password Empty to generate secure, random one
 nextcloud_db_type           = 'mysql'        # (MariaDB)
-# nextcloud_db_type           = 'pgsql'        # (PostgreSQL)
+# nextcloud_db_type         = 'pgsql'        # (PostgreSQL)
 nextcloud_db_host           = 'localhost'
 nextcloud_db                = 'NextCloudDB'
 nextcloud_db_user           = 'nc_admin'

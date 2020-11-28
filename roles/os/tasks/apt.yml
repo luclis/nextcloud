@@ -1,4 +1,5 @@
 ---
+
 # apt related OS tasks
 
 - name: apt dist-upgrade
@@ -18,5 +19,5 @@
       - ssl-cert
       - ca-certificates
       - apt-transport-https
-      - dirmngr 
+      - dirmngr
     state: latest
