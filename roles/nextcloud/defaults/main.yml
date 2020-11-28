@@ -62,6 +62,26 @@ nextcloud_mail_config:
   - "mail_smtpname --value={{ nextcloud_mail_smtpname }}"
   - "mail_smtppassword --value={{ nextcloud_mail_smtppwd }}"
 
+nextcloud_ldap_config:
+  - "{{ nextcloud_ldap_config_id }} hasMemberOfFilterSupport      1"
+  - "{{ nextcloud_ldap_config_id }} ldapAgentName                 {{ nextcloud_ldap_bind_account }}"
+  - "{{ nextcloud_ldap_config_id }} ldapAgentPassword             {{ nextcloud_ldap_bind_password }}"
+  - "{{ nextcloud_ldap_config_id }} ldapBase                      {{ nextcloud_ldap_base }}"
+  - "{{ nextcloud_ldap_config_id }} ldapBaseGroups                {{ nextcloud_ldap_base_groups }}"
+  - "{{ nextcloud_ldap_config_id }} ldapBaseUsers                 {{ nextcloud_ldap_base_users }}"
+  - "{{ nextcloud_ldap_config_id }} ldapCacheTTL                  50"
+  - "{{ nextcloud_ldap_config_id }} ldapConfigurationActive       1"
+  - "{{ nextcloud_ldap_config_id }} ldapEmailAttribute            mail"
+  - "{{ nextcloud_ldap_config_id }} ldapExpertUsernameAttr        {{ nextcloud_ldap_username_attribute }}""
+  - "{{ nextcloud_ldap_config_id }} ldapGidNumber                 {{ nextcloud_ldap_gid_attribute }}"
+  - "{{ nextcloud_ldap_config_id }} ldapGroupDisplayName          {{ nextcloud_ldap_group_displayname }}"
+  - "{{ nextcloud_ldap_config_id }} ldapGroupFilter               {{ nextcloud_ldap_group_filter }}"
+  - "{{ nextcloud_ldap_config_id }} ldapHost                      {{ nextcloud_ldap_host }}"
+  - "{{ nextcloud_ldap_config_id }} ldapLoginFilter               {{ nextcloud_ldap_login_filter }}"
+  - "{{ nextcloud_ldap_config_id }} ldapUserDisplayName           {{ nextcloud_ldap_user_displayname }}"
+  - "{{ nextcloud_ldap_config_id }} ldapUserFilter                {{ nextcloud_ldap_user_filter }}"
+  - "{{ nextcloud_ldap_config_id }} useMemberOfToDetectMembership 1"
+
 nextcloud_app_config:
   - name:  survey_client
     state: disable
