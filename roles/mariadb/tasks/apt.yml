@@ -9,7 +9,7 @@
 
 - name: add additional mariaddb repo
   apt_repository:
-    repo: 'deb [arch=amd64,arm64] http://{{ mariadb_mirror_server }}/mariadb/repo/{{ mariadb_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main'
+    repo: 'deb [arch=amd64,arm64] https://{{ mariadb_mirror_server }}/pub/mariadb/repo/{{ mariadb_version }}/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main'
     validate_certs: true
     update_cache: true
     state: present
