@@ -1,0 +1,12 @@
+---
+##WIP##
+  - name: create cert directory
+    file:
+      name: "{{ item }}"
+      owner: root
+      group: root
+      mode:  0755
+      state: directory
+    loop:
+      - "{{ tls_certificate_file | dirname }}"
+      - "{{ tls_certificate_directory }}"

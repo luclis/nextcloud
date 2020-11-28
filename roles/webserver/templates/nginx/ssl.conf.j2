@@ -1,19 +1,37 @@
-ssl_certificate_key {{ tls_certificate_key }};
+#SSL Configuration
 {% if tls_certificate_type != 'selfsigned' %}
-ssl_certificate {{ tls_certificate_fullchain }};
 ssl_trusted_certificate {{ tls_certificate_ca }};
-{% else %}
-ssl_certificate {{ tls_certificate_file }};
 {% endif %}
-ssl_dhparam {{ tls_certificate_directory }}/dhparam.pem;
+ssl_dhparam {{ tls_dh_file }};
+ssl_protocols TLSv1.3 TLSv1.2;
+ssl_ciphers 'EECDH+CHACHA20:EECDH+AESGCM';
+ssl_ecdh_curve X25519:secp384r1;
+ssl_prefer_server_ciphers on;
+
+{% if tls_certificate_type != 'selfsigned' %}
+ssl_stapling on;
+ssl_stapling_verify on;
+{% endif %}
+{% if tls_certificate_type = 'pkisigned' %}
+#Parametre ocsp. Pas encore mis en place.
+#resolver 127.0.0.1 80.67.169.12 valid=300s;
+#resolver_timeout 5s;
+{% endif %}
+
 ssl_session_timeout 1d;
 ssl_session_cache shared:SSL:50m;
 ssl_session_tickets off;
-ssl_protocols TLSv1.3 TLSv1.2;
-ssl_ciphers 'TLS-CHACHA20-POLY1305-SHA256:TLS-AES-256-GCM-SHA384:HIGH';
-ssl_prefer_server_ciphers on;
-ssl_ecdh_curve secp521r1:secp384r1:prime256v1;
-{% if tls_certificate_type != 'selfsigned' %}
-ssl_stapling on;
+
+#Upstream servers
+#Serveur php par defaut.
+upstream php-handler {
+  server unix:{{ php_socket[ansible_distribution] }};
+}
+{% if install_onlyoffice %}
+upstream onlyoffice-docker {
+  server 127.0.0.1:{{ onlyoffice_ssl_port }}
+}
 {% endif %}
-ssl_stapling_verify on;
+
+#Block Spam
+limit_req_zone $binary_remote_addr zone=flood:20m rate=100r/s;

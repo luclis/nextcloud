@@ -2,7 +2,7 @@ server {
 	listen {{ nextcloud_web_port }} default_server;
 	{% if ansible_default_ipv6.address is defined %}listen [::]:{{ nextcloud_web_port }};{% endif %}
 	server_name {{ nextcloud_fqdn }};
-{% if tls_certificate_type != 'selfsigned' %}
+{% if tls_certificate_type = 'acme.sh' %}
 	location /.well-known/acme-challenge {
 		root /var/www/letsencrypt;
 		default_type "text/plain";
@@ -18,9 +18,20 @@ server {
 	listen {{ nextcloud_ssl_port }} ssl http2 default_server;
 	{% if ansible_default_ipv6.address is defined %}listen [::]:{{ nextcloud_ssl_port }} ssl http2;{% endif %}
 	server_name {{ nextcloud_fqdn }};
+
+	ssl_certificate_key {{ tls_certificate_key }};
+	{% if tls_certificate_type != 'selfsigned' %}
+	ssl_certificate {{ tls_certificate_fullchain }};
+	{% else %}
+	ssl_certificate {{ tls_certificate_file }};
+	{% endif %}
 	root {{ nextcloud_www_dir }};
 	access_log /var/log/nginx/nextcloud.access.log main;
 	error_log /var/log/nginx/nextcloud.error.log warn;
+
+	{% if (tls_certificate_type != 'selfsigned') or (not tls_certificate_test) %}
+	add_header Strict-Transport-Security "max-age=15552000; includeSubDomains; preload;";
+	{% endif %}
 
 	location = /robots.txt {
 		allow all;
