@@ -1,6 +1,6 @@
 requirepass {{ lookup('password', '{{ credential_store }}/redis_secret chars=ascii_letters,digits length=32') }}
 daemonize yes
-pidfile /var/run/redis/redis-server.pid
+pidfile /run/redis/redis-server.pid
 {% if groups['redis'] == groups['webserver'] %}
 bind 127.0.0.1
 port 0

@@ -7,7 +7,7 @@
 - name: configure redis
   template:
     src: redis.conf.j2
-    dest: "{{ redis_conf_path[ansible_distribution] }}/redis.conf"
+    dest: "{{ redis_conf_path[ansible_os_family] }}/redis.conf"
     owner: redis
     group: redis
     mode: 0600
@@ -23,7 +23,7 @@
 
 - name: start and enable redis
   systemd:
-    name:    redis
+    name:    "{{ redis_service[ansible_os_family] }}"
     state:   started
     enabled: true
 
