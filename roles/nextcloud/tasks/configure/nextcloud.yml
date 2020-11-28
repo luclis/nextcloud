@@ -64,7 +64,7 @@
   shell: php occ app:enable user_ldap
   args:
     chdir: "{{ nextcloud_www_dir }}"
-  when: ({{ nextcloud_ldap_host }}) and (( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) )))
+  when: nextcloud_configure_ldap|bool and ( ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
 
 - name: set nextcloud ldap config.php values
   become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"
@@ -74,7 +74,7 @@
   args:
     chdir: "{{ nextcloud_www_dir }}"
   loop: "{{ nextcloud_ldap_config }}"
-  when: ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) )
+  when: nextcloud_configure_ldap|bool and ( ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
 
 - name: set nextcloud mail config.php values
   become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"
@@ -84,7 +84,7 @@
   args:
     chdir: "{{ nextcloud_www_dir }}"
   loop: "{{ nextcloud_mail_config }}"
-  when: nextcloud_configure_mail|bool and (( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
+  when: nextcloud_configure_mail|bool and ( ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
 
 - name: backup jobs, upgrade apps and database tuning
   become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"

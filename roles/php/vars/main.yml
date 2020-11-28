@@ -3,7 +3,7 @@
 
 php_apt_repo_url:
   Ubuntu: deb http://ppa.launchpad.net/ondrej/php/ubuntu {{ ansible_distribution_release }} main
-  Debian: deb https://packages.sury.org/php/ {{ ansible_distribution_release }} main
+  Debian: deb https://packages.sury.org/php/ {% if ansible_distribution_release == 'sid' %}buster{% else %}{{ ansible_distribution_release }}{% endif %} main
 
 php_apt_key:
   Debian:

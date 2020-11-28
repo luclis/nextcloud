@@ -58,7 +58,7 @@ nextcloud_mail_smtpname     =
 nextcloud_mail_smtppwd      =
 
 # Nextcloud LDAP Setup
-
+nextcloud_configure_ldap          = true
 nextcloud_ldap_host               = "ldaps://ad.luclis.xyz"
 nextcloud_ldap_bind_account       = "CN=svc_nextcloud,OU=SERVICE,DC=luclis,DC=xyz"
 nextcloud_ldap_bind_password      = ""

@@ -2,7 +2,7 @@
 # vars file for nginx/apache web server
 
 tls_certificate_type: "{{ nextcloud_certificate_type }}"
-tls_certificate_directory: "{{ nextcloud_certificate_directory }}"
+tls_certificate_directory: "{{ nextcloud_ssl_certificate_directory }}"
 tls_certificate_key_length: "{{ nextcloud_certificate_key_length }}"
 tls_certificate_common_name: "{{ nextcloud_certificate_common_name }}"
 tls_certificate_file: "{{ nextcloud_certificate_file }}"
