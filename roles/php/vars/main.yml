@@ -20,59 +20,38 @@ php_yum_repo_name:
   Amazon: amzn2extra-php{{ php_version }}
   CentOS: remi-php{{ php_version | replace(".","") }}
   Fedora: remi-php{{ php_version | replace(".","") }}
-  
+
 
 php_db_extension:
   mysql: php{{ php_version }}-mysql
   pgsql: php{{ php_version }}-pgsql
 
 php_service_name:
-  CentOS: php-fpm
-  Fedora: php-fpm
-  Amazon: php-fpm
-  Ubuntu: php{{ php_version }}-fpm
-  Debian: php{{ php_version }}-fpm
+    RedHat: php-fpm
+    Debian: php{{ php_version }}-fpm
 
 php_php_conf:
-  CentOS: /etc/php.ini
-  Fedora: /etc/php.ini
-  Amazon: /etc/php.ini
-  Ubuntu: /etc/php/{{ php_version }}/fpm/php.ini
-  Debian: /etc/php/{{ php_version }}/fpm/php.ini
+  RedHat: /etc/php.ini
+  Debian: /etc/php/{{ php_version }}/fpm.ini
 
 php_fpm_conf:
-  CentOS: /etc/php-fpm.conf
-  Fedora: /etc/php-fpm.conf
-  Amazon: /etc/php-fpm.conf
-  Ubuntu: /etc/php/{{ php_version }}/fpm/php-fpm.conf
+  RedHat: /etc/php-fpm.conf
   Debian: /etc/php/{{ php_version }}/fpm/php-fpm.conf
 
 php_cli_conf:
-  CentOS: /etc/php-cli.ini
-  Fedora: /etc/php-cli.ini
-  Amazon: /etc/php-cli.ini
-  Ubuntu: /etc/php/{{ php_version }}/cli/php.ini
+  RedHat: /etc/php-cli.ini
   Debian: /etc/php/{{ php_version }}/cli/php.ini
 
 php_www_conf:
-  CentOS: /etc/php-fpm.d/www.conf
-  Fedora: /etc/php-fpm.d/www.conf
-  Amazon: /etc/php-fpm.d/www.conf
-  Ubuntu: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
+  RedHat: /etc/php-fpm.d/www.conf
   Debian: /etc/php/{{ php_version }}/fpm/pool.d/www.conf
 
 php_pid:
-  CentOS: /run/php-fpm/php{{ php_version }}-fpm.pid
-  Fedora: /run/php-fpm/php{{ php_version }}-fpm.pid
-  Amazon: /run/php-fpm/php{{ php_version }}-fpm.pid
-  Ubuntu: /run/php/php{{ php_version }}-fpm.pid
+  RedHat: /run/php-fpm/php{{ php_version }}-fpm.pid
   Debian: /run/php/php{{ php_version }}-fpm.pid
 
 php_socket:
-  CentOS: /run/php-fpm/php{{ php_version }}-fpm.sock
-  Fedora: /run/php-fpm/php{{ php_version }}-fpm.sock
-  Amazon: /run/php-fpm/php{{ php_version }}-fpm.sock
-  Ubuntu: /run/php/php{{ php_version }}-fpm.sock
+  RedHat: /run/php-fpm/php{{ php_version }}-fpm.sock
   Debian: /run/php/php{{ php_version }}-fpm.sock
 
 php_package_required:
@@ -96,7 +75,6 @@ php_package_required:
     - php-bz2
     - php-pecl-zip
     - php-{% if nextcloud_db_type == 'mysql' %}mysqlnd{% elif nextcloud_db_type == 'pgsql' %}pgsql{% endif %}
-#    - php-mcrypt
     - php-pear
   apt:
     - php{{ php_version }}

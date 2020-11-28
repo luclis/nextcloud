@@ -46,11 +46,8 @@ web_group:
     Debian: "nginx"
 
 systemd_service_path:
-  CentOS: '/usr/lib/systemd/system'
-  Fedora: '/usr/lib/systemd/system'
-  Amazon: '/usr/lib/systemd/system'
-  Ubuntu: '/lib/systemd/system'
-  Debian: '/lib/systemd/system'
+  RedHat: "/usr/lib/systemd/system"
+  Debian: "/lib/systemd/system"
 
 # define tls-certificate for nextcloud webserver and onlyoffice
 
