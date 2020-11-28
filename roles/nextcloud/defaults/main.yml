@@ -72,7 +72,7 @@ nextcloud_ldap_config:
   - "{{ nextcloud_ldap_config_id }} ldapCacheTTL                  50"
   - "{{ nextcloud_ldap_config_id }} ldapConfigurationActive       1"
   - "{{ nextcloud_ldap_config_id }} ldapEmailAttribute            mail"
-  - "{{ nextcloud_ldap_config_id }} ldapExpertUsernameAttr        {{ nextcloud_ldap_username_attribute }}""
+  - "{{ nextcloud_ldap_config_id }} ldapExpertUsernameAttr        {{ nextcloud_ldap_username_attribute }}"
   - "{{ nextcloud_ldap_config_id }} ldapGidNumber                 {{ nextcloud_ldap_gid_attribute }}"
   - "{{ nextcloud_ldap_config_id }} ldapGroupDisplayName          {{ nextcloud_ldap_group_displayname }}"
   - "{{ nextcloud_ldap_config_id }} ldapGroupFilter               {{ nextcloud_ldap_group_filter }}"
