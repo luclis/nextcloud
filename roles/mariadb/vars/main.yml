@@ -2,17 +2,11 @@
 # vars file for mariadb
 
 mariadb_conf_dir:
-  Amazon: /etc/my.cnf.d
-  CentOS: /etc/my.cnf.d
-  Fedora: /etc/my.cnf.d
-  Ubuntu: /etc/mysql/mariadb.conf.d/
+  RedHat: /etc/my.cnf.d
   Debian: /etc/mysql/mariadb.conf.d/
 
 mariadb_socket:
-  Amazon: /var/lib/mysql/mysql.sock
-  CentOS: /var/lib/mysql/mysql.sock
-  Fedora: /var/lib/mysql/mysql.sock
-  Ubuntu: /var/run/mysqld/mysqld.sock
+  RedHat: /var/lib/mysql/mysql.sock
   Debian: /var/run/mysqld/mysqld.sock
 
 mariadb_yum_repopath:
