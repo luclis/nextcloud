@@ -61,16 +61,27 @@
   become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"
   become_flags: "{{ ansible_become_flags | default(omit) }}"
   become: yes
-  shell: php occ app:enable user_ldap
+  shell:     php occ app:{{ item.state }} {{ item.name }}
   args:
     chdir: "{{ nextcloud_www_dir }}"
+  loop: "{{ nextcloud_ldap_app }}"
   when: nextcloud_configure_ldap|bool and ( ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
 
-- name: set nextcloud ldap config.php values
+- name: create nextcloud ldap config profile
   become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"
   become_flags: "{{ ansible_become_flags | default(omit) }}"
   become: yes
-  shell: php occ config:system:set {{ item }}
+  shell: php occ ldap:create-empty-config
+  args:
+    chdir: "{{ nextcloud_www_dir }}"
+  loop: "{{ nextcloud_ldap_config }}"
+  when: nextcloud_configure_ldap|bool and ( ( first_setup_nextcloud is changed ) or ( force_nextcloud_config|default(false) ))
+
+- name: set nextcloud ldap config values
+  become_user: "{{ web_user[nextcloud_webserver_type][ansible_os_family] }}"
+  become_flags: "{{ ansible_become_flags | default(omit) }}"
+  become: yes
+  shell: php occ ldap:set-config {{ item }}
   args:
     chdir: "{{ nextcloud_www_dir }}"
   loop: "{{ nextcloud_ldap_config }}"

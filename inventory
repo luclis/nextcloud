@@ -59,7 +59,9 @@ nextcloud_mail_smtppwd      =
 
 # Nextcloud LDAP Setup
 nextcloud_configure_ldap          = true
+nextcloud_ldap_config_id          = s01
 nextcloud_ldap_host               = "ldaps://ad.luclis.xyz"
+nextcloud_ldap_port               = "636"
 nextcloud_ldap_bind_account       = "CN=svc_nextcloud,OU=SERVICE,DC=luclis,DC=xyz"
 nextcloud_ldap_bind_password      = ""
 nextcloud_ldap_base               = "DC=luclis,DC=xyz"
@@ -70,8 +72,8 @@ nextcloud_ldap_gid_attribute      = "gidNumber"
 nextcloud_ldap_group_displayname  = "cn"
 nextcloud_ldap_user_displayname   = "displayname"
 nextcloud_ldap_group_filter       = "(&(|(objectclass=group))(|(cn=Nextcloud Admin PRJ)))"
-nextcloud_ldap_login_filter       = "(&(&(objectclass=user)(|(memberof=CN=Nextcloud User PRJ,CN=Users,DC=luclis,DC=xyz))(memberof=CN=Nextcloud Admin PRJ,CN=Users,DC=luclis,DC=xyz)))(samaccountname=%uid))"
-nextcloud_ldap_user_filter        = "(&(objectclass=user)(|(memberof=CN=Nextcloud User PRJ,CN=Users,DC=luclis,DC=xyz)(memberof=CN=Nextcloud Admin PRJ,CN=Users,DC=luclis,DC=xyz))"
+nextcloud_ldap_login_filter       = "(&(|(|(memberof=CN=Nextcloud Admin PRJ,CN=Users,DC=luclis,DC=xyz)(primaryGroupID=1116))(|(memberof=CN=Nextcloud User PRJ,CN=Users,DC=luclis,DC=xyz)(primaryGroupID=1108)))(samaccountname=%uid))"
+nextcloud_ldap_user_filter        = "(|(|(memberof=CN=Nextcloud Admin PRJ,CN=Users,DC=luclis,DC=xyz)(primaryGroupID=1116))(|(memberof=CN=Nextcloud User PRJ,CN=Users,DC=luclis,DC=xyz)(primaryGroupID=1108)))"
 
 # Allways get the latest version of Nextcloud
 nextcloud_archive           = https://download.nextcloud.com/server/releases/latest.tar.bz2
