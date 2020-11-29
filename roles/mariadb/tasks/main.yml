@@ -6,7 +6,7 @@
 
 - name: create conf dir
   file:
-    name: "{{ mariadb_conf_dir[ansible_distribution] | dirname }}"
+    name: "{{ mariadb_conf_dir[ansible_os_family] | dirname }}"
     owner: root
     group: root
     mode: 0755
@@ -15,7 +15,7 @@
 - name: configure mariadb
   template:
     src: my.cnf.j2
-    dest: "{{ mariadb_conf_dir[ansible_distribution] }}/90-nextcloud.cfg"
+    dest: "{{ mariadb_conf_dir[ansible_os_family] }}/90-nextcloud.cfg"
     owner: root
     group: root
     mode: 0644
@@ -32,23 +32,23 @@
     name: ''
     host_all: yes
     state: absent
-    login_unix_socket: "{{ mariadb_socket[ansible_distribution] }}"
+    login_unix_socket: "{{ mariadb_socket[ansible_os_family] }}"
 
 - name: remove test db
   mysql_db:
     name: test
     state: absent
-    login_unix_socket: "{{ mariadb_socket[ansible_distribution] }}"
-  
+    login_unix_socket: "{{ mariadb_socket[ansible_os_family] }}"
+
 - name: create nextcloud db
   mysql_db:
     name: "{{ nextcloud_db }}"
     collation: utf8mb4_general_ci
     encoding: utf8mb4
-    login_unix_socket: "{{ mariadb_socket[ansible_distribution] }}"
+    login_unix_socket: "{{ mariadb_socket[ansible_os_family] }}"
 
 - name: generate db passwd if nextcloud_db_passwd is empty
-  set_fact: 
+  set_fact:
     nextcloud_db_passwd: "{{ lookup('password', '{{ credential_store }}/database_secret chars=ascii_letters,digits length=32') }}"
   when: nextcloud_db_passwd == ''
 
@@ -59,4 +59,4 @@
     priv:     "{{ nextcloud_db }}.*:ALL"
     host:     "{{ nextcloud_db_host }}"
     state: present
-    login_unix_socket: "{{ mariadb_socket[ansible_distribution] }}"
+    login_unix_socket: "{{ mariadb_socket[ansible_os_family] }}"
