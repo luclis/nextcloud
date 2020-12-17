@@ -1,4 +1,5 @@
 ---
+# dnf related OS tasks
 
 - name: add php{{ php_version | replace(".","") }} repo on fedora/centos
   dnf:
@@ -30,7 +31,7 @@
     owner: "{{ item.owner }}"
     group: "{{ item.group }}"
     mode:  0770
-  loop: 
+  loop:
     - { owner:  nginx, group: nginx, name: /var/lib/php/session }
     - { owner: root,   group: nginx, name: /var/lib/php/wsdlcache }
     - { owner: root,   group: nginx, name: /var/lib/php/opcache }
@@ -43,12 +44,12 @@
     backup: true
   notify: restart php-fpm
 
-- name: alias php 
+- name: alias php
   copy:
     content: |
       #!/bin/bash
       alias php="php -c /etc/php-cli.ini"
-    dest: /etc/profile.d/php-cli-ini.sh  
+    dest: /etc/profile.d/php-cli-ini.sh
   when: false
 
 - name: unmask tmp.mount

@@ -2,7 +2,7 @@
 
 #
 # Bootstrap Nextcloud
-# 
+#
 # Edit ssh-authorized-keys: and runcmd: according to your needs
 # Insert this as cloud-config/user data at launch of your ec2, droplet, openstack server, etc. pp.
 # Login to your full configured NextCloud/Talk/Collabora-Server
@@ -46,9 +46,8 @@ system_info:
 #
 runcmd:
   - curl -s https://raw.githubusercontent.com/ReinerNippes/nextcloud/master/prepare_system.sh | /bin/bash
-  - # 
+  - #
   - # Insert a command to set a DynDNS record for this server here
   - # e.g. Strato DynDNS
   - # curl --silent --show-error --insecure --user [BENUTZERNAME]:[PASSWORT] https://dyndns.strato.com/nic/update?hostname=[HOSTNAME]
   - HOME=/root ansible-pull --clean --force -d /root/nextcloud -i 'localhost,' -U https://github.com/ReinerNippes/nextcloud.git nextcloud.yml -e "nextcloud_fqdn=nextcloud.example.tld"
-

@@ -1,5 +1,4 @@
 ---
-
 # apt related OS tasks
 
 - name: apt dist-upgrade

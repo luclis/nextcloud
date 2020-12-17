@@ -1,5 +1,4 @@
 ---
-
 # apt related OS tasks
 
 - name: add apt key for php repo

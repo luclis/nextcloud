@@ -1,6 +1,5 @@
 ---
-
-# yum related os tasks
+# dnf related OS tasks
 
 - name: install needed fedora os packages
   dnf:

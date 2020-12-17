@@ -1,5 +1,4 @@
 ---
-
 # yum related OS tasks
 
 - name: install fail2ban

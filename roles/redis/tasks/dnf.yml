@@ -1,6 +1,5 @@
 ---
-
-# dnf related tasks
+# dnf OS related tasks
 
 - name: install needed packages
   dnf:

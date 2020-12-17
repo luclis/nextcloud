@@ -1,4 +1,5 @@
 ---
+# configure nginx webserver
 
 - name: bring /etc/nginx/nginx.conf in place
   template:

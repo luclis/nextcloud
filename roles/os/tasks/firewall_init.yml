@@ -1,5 +1,4 @@
 ---
-
 # init firewall
 
 - name: initialize ufw

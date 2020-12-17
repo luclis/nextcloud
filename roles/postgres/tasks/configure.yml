@@ -1,5 +1,5 @@
 ---
-# configure tasks for postgresql 
+# configure tasks for postgreSQl
 
 - name: configure global settings
   lineinfile:

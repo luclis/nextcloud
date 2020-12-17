@@ -1,7 +1,6 @@
 ---
 # tasks file for nginx
 
-
 - name: pkg manager spefic tasks
   include_tasks: "{{ nextcloud_webserver_type }}/{{ ansible_pkg_mgr }}.yml"
 
@@ -29,7 +28,7 @@
   include_tasks: firewall_config.yml
 
 - name: create tls certificate (webserver)
-  include_role: 
+  include_role:
     name: tls-certificate
 
 - name: include configuration tasks

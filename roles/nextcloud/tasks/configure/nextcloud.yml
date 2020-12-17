@@ -1,5 +1,4 @@
 ---
-
 # configure nextcloud
 
 - name: check if config.php exists
